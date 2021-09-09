@@ -2,6 +2,7 @@ package com.androidrion.movierealm;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -48,8 +49,9 @@ public class MainActivity extends AppCompatActivity {
     MovieModel movieModels;
     ConstraintLayout rootLayout;
     EditText search;
-    CharSequence searchresult="";
+    CharSequence searchresult = "";
     RelativeLayout favorite;
+    private static int SPLASH_SCREEN_TIME_OUT = 2000;
 
     void getData() {
         AndroidNetworking.get("https://api.themoviedb.org/3/movie/upcoming?api_key=b9dfca59664f58a8ac10cb5506272133&language=en-US&page=1")
@@ -94,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
                                     intent.putExtra("poster_path", movieModels.getPoster_path());
                                     intent.putExtra("release date", movieModels.getRelease_date());
                                     intent.putExtra("overview", movieModels.getOverview());
+                                    intent.putExtra("id", movieModels.getId().toString());
                                     startActivity(intent);
                                 }
                             });
@@ -110,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -123,17 +127,25 @@ public class MainActivity extends AppCompatActivity {
         recview = (RecyclerView) findViewById(R.id.rvdata);
         rootLayout = (ConstraintLayout) findViewById(R.id.rootlayout);
 
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent i=new Intent(MainActivity.this,
+                        SplashScreen.class);
+                //Intent is used to switch from one activity to another.
+
+                startActivity(i);
+                //invoke the SecondActivity.
+
+                finish();
+                //the current activity will get finished.
+            }
+        }, SPLASH_SCREEN_TIME_OUT);
+
         search = (EditText) findViewById(R.id.search_input);
         progressBar = findViewById(R.id.progress_bar);
         getData();
 
-        favorite = findViewById(R.id.favorite_button);
-        favorite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), FavoriteActivity.class);
-                startActivity(intent);
-            }
-        });
+
     }
 }

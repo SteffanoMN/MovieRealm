@@ -82,13 +82,15 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="45dp"
+            android:layout_width="180dp"
             android:layout_height="43dp"
             app:layout_constraintBottom_toTopOf="@+id/Logoname"
             app:layout_constraintEnd_toEndOf="@+id/Logoname"
+            app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="@+id/Logoname"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/mdb_logo" />
+            app:layout_constraintVertical_bias="0.307"
+            app:srcCompat="@drawable/cinema_xxi" />
 
         <RelativeLayout
             android:layout_width="wrap_content"

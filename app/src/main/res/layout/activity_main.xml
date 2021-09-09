@@ -72,7 +72,7 @@
             android:id="@+id/Logoname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="The Movie Database"
+            android:text="Cinema XXI Movie Schedule"
             android:textSize="28dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -95,13 +95,13 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="45dp"
+            android:layout_width="180dp"
             android:layout_height="43dp"
             app:layout_constraintBottom_toTopOf="@+id/Logoname"
             app:layout_constraintEnd_toEndOf="@+id/Logoname"
             app:layout_constraintStart_toStartOf="@+id/Logoname"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/mdb_logo" />
+            app:srcCompat="@drawable/cinema_xxi" />
 
         <RelativeLayout
             android:layout_width="wrap_content"

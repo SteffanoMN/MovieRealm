@@ -23,6 +23,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     MovieModel movieModel;
     Bundle bundle = getIntent().getExtras();
     int numStatus = 0;
+    Integer id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,12 +54,14 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
             btnSave.setVisibility(View.INVISIBLE);
             btnDelete.setVisibility(View.VISIBLE);
         }
+        id = Integer.parseInt(getIntent().getStringExtra("id"));
 
         if (bundle != null) {
             String title = bundle.getString("original_title");
             String date = bundle.getString("release_date");
             String desc = bundle.getString("overview");
             String image = bundle.getString("poster_path");
+            id = Integer.parseInt(getIntent().getStringExtra("id"));
 
             movie_name.setText(title);
             movie_release_date.setText(date);
@@ -79,11 +82,10 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
 
                 realmHelper = new RealmHelper(realm);
                 realmHelper.save(movieModel);
-                numStatus = 1;
 
                 Toast.makeText(DetailActivity.this, "Berhasil Disimpan!", Toast.LENGTH_SHORT).show();
             } else if (v == btnDelete) {
-                realmHelper.delete();
+                realmHelper.delete(id);
                 Toast.makeText(DetailActivity.this, "Delete Success", Toast.LENGTH_SHORT).show();
                 finish();
             }
